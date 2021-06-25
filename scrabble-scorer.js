@@ -72,11 +72,11 @@ function scrabbleScore(word) {
 	return wordScore;
 }
 
-const oldScorer = {
+const scrabbleScore = {
     name: "Scrabble",
     description: "The traditional scoring algorithm.",
     scorerFunction: function(word) {
-        return oldScrabbleScorer(word);
+        return scrabbleScore(word);
     }
 };
 
@@ -96,7 +96,7 @@ const vowelBonusScorer = {
     }
 };
 
-const scoringAlgorithms = [oldScorer, simpleScorer, vowelBonusScorer];
+const scoringAlgorithms = [scrabbleScore, simpleScorer, vowelBonusScorer];
 
 function scorerPrompt() {
     let userScorerChoice = input.question("Which scoring method you would like?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0,1, or 2: ");
@@ -105,7 +105,7 @@ function scorerPrompt() {
     } else if (userScorerChoice == 1) {
         console.log("Score: " + vowelBonusScore(userInput));
     } else if (userScorerChoice == 2) {
-        console.log("Score: " + oldScrabbleScorer(userInput));
+        console.log("Score: " + scrabbleScore(userInput));
     }
 }
 
