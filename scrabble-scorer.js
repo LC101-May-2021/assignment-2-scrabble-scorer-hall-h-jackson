@@ -101,11 +101,11 @@ const scoringAlgorithms = [scrabbleScoring, simpleScorer, vowelBonusScorer];
 function scorerPrompt() {
     let userScorerChoice = input.question("Which scoring method you would like?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0,1, or 2: ");
     if (userScorerChoice == 0) {
-        console.log("Score: " + simpleScore(userInput));
+        console.log("Score: " + simpleScorer.scoringFunction);
     } else if (userScorerChoice == 1) {
-        console.log("Score: " + vowelBonusScore(userInput));
+        console.log("Score: " + vowelBonusScorer.scoringFunction);
     } else if (userScorerChoice == 2) {
-        console.log("Score: " + scrabbleScore(userInput));
+        console.log("Score: " + scrabbleScoring.scoringFunction);
     }
 }
 
