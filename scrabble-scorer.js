@@ -2,10 +2,6 @@
 
 const input = require("readline-sync");
 
-function initialPrompt() {
-    userInput = input.question("Let's play some scrabble!\n\nEnter a word: ");
-}
-
 let userInput = "";
 let vowels = ['A', 'E', 'I', 'O', 'U'];
 let sometimesY = ['Y'];
@@ -41,6 +37,13 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
+
+
+function initialPrompt() {
+    userInput = input.question("Let's play some scrabble!\n\nEnter a word: ");
+
+}
+
 function simpleScore(word) {
     return word.length
 }
@@ -68,14 +71,14 @@ function scrabbleScore(word) {
 				wordScore += Number(newPointStructure[letters]);
 			}
 		}
-	}
+    }   
 	return wordScore;
 }
 
-const scrabbleScoring = {
+const oldScorer = {
     name: "Scrabble",
     description: "The traditional scoring algorithm.",
-    scoringFunction: function(word) {
+    scorerFunction: function(word) {
         return scrabbleScore(word);
     }
 };
@@ -83,7 +86,7 @@ const scrabbleScoring = {
 const simpleScorer = {
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
-  scoringFunction: function(word) {
+  scorerFunction: function(word) {
         return simpleScore(word);
     }
 };
@@ -91,21 +94,21 @@ const simpleScorer = {
 const vowelBonusScorer = {
   name: "Bonus Vowels",
   description: "Vowels are 3 pts, consonants are 1 pt.",
-  scoringFunction: function(word) {
+  scorerFunction: function(word) {
         return vowelBonusScore(word);
     }
 };
 
-const scoringAlgorithms = [scrabbleScoring, simpleScorer, vowelBonusScorer];
+const scoringAlgorithms = [scrabbleScore, simpleScorer, vowelBonusScorer];
 
 function scorerPrompt() {
     let userScorerChoice = input.question("Which scoring method you would like?\n0 - Simple: One point per character\n1 - Vowel Bonus: Vowels are worth 3 points\n2 - Scrabble: Uses scrabble point system\nEnter 0,1, or 2: ");
     if (userScorerChoice == 0) {
-        console.log("Score: " + simpleScorer.scoringFunction);
+        console.log("Score: " + simpleScore(userInput));
     } else if (userScorerChoice == 1) {
-        console.log("Score: " + vowelBonusScorer.scoringFunction);
+        console.log("Score: " + vowelBonusScore(userInput));
     } else if (userScorerChoice == 2) {
-        console.log("Score: " + scrabbleScoring.scoringFunction);
+        console.log("Score: " + scrabbleScore(userInput));
     }
 }
 
@@ -125,8 +128,8 @@ newPointStructure[' '] = 0;
 
 function runProgram() {
    initialPrompt(userInput);
-   scorerPrompt();
-   console.log(scrabbleScore(userInput));
+   scorerPrompt(userInput);
+   
  
 }
 
